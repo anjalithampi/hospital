@@ -1,0 +1,51 @@
+<div id="<%= dom_id user %>">
+  <p>
+    <strong>First name:</strong>
+    <%= user.first_name %>
+  </p>
+
+  <p>
+    <strong>Last name:</strong>
+    <%= user.last_name %>
+  </p>
+
+  <p>
+    <strong>Age:</strong>
+    <%= user.age %>
+  </p>
+
+  <p>
+    <strong>Gender:</strong>
+    <%= user.gender %>
+  </p>
+
+  <p>
+    <strong>Hair colour:</strong>
+    <%= user.hair_colour %>
+  </p>
+
+  <% if user.is_a?(StaffMember) %>
+    <p>
+      <strong>Is a manager:</strong>
+      <%= user.is_a_manager %>
+    </p>
+
+    <p>
+      <strong>Work only on weekdays:</strong>
+      <%= user.work_only_on_weekdays %>
+    </p>
+  <% end %>
+
+<% if user.is_a?(Resident) %>
+  <p>
+    <strong>Address:</strong>
+    <%= user.address %>
+  </p>
+
+  <p>
+    <strong>Has dnacpr:</strong>
+    <%= user.has_dnacpr %>
+  </p>
+  <% end %>
+
+</div>
