@@ -1,51 +1,63 @@
-<div id="<%= dom_id user %>">
-  <p>
-    <strong>First name:</strong>
-    <%= user.first_name %>
-  </p>
-
-  <p>
-    <strong>Last name:</strong>
-    <%= user.last_name %>
-  </p>
-
-  <p>
-    <strong>Age:</strong>
-    <%= user.age %>
-  </p>
-
-  <p>
-    <strong>Gender:</strong>
-    <%= user.gender %>
-  </p>
-
-  <p>
-    <strong>Hair colour:</strong>
-    <%= user.hair_colour %>
-  </p>
-
+<table class="table table-secondary table-striped table-bordered text-center">
+  <thead class="table-dark">
+    <tr>
+      <!--th rowspan="2">#</th-->
+      <th rowspan="2">First name</th>
+      <th rowspan="2">Last name</th>
+      <th rowspan="2">Age</th>
+      <th rowspan="2">Gender</th>
+      <th rowspan="2">Hair colour</th>
+      <th colspan="3">Staff Member</th>
+      <th colspan="3">Resident</th>
+    </tr>
+    <tr>
+      <th scope="col">True/False?</th>
+      <th scope="col">Is a Manager?</th>
+      <th scope="col">Work on Weekends?</th>
+      <th scope="col">True/False?</th>
+      <th scope="col">Address</th>
+      <th scope="col">DNACPR?</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider" id="<%= dom_id user %>">
+    <tr>
+      <td><%= user.first_name %></td>
+      <td><%= user.last_name %></td>
+      <td> <%= user.age %></td>
+      <td> <%= user.gender %></td>
+      <td> <%= user.hair_colour %></td>
   <% if user.is_a?(StaffMember) %>
-    <p>
-      <strong>Is a manager:</strong>
-      <%= user.is_a_manager %>
-    </p>
+      <td class="fw-bold" style="color: green;"> &#x2713;  </td>
 
-    <p>
-      <strong>Work only on weekdays:</strong>
-      <%= user.work_only_on_weekdays %>
-    </p>
+      <% if user.is_a_manager == true %>
+        <td class="fw-bold" style="color: green;">&#x2713; </td>
+      <% else %>
+        <td class="fw-bold" style="color: red;"> &times; </td>
+      <% end %>
+
+      <% if user.work_only_on_weekdays == true %>
+        <td class="fw-bold" style="color: green;">&#x2713; </td>
+      <% else %>
+        <td class="fw-bold" style="color: red;"> &times; </td>
+      <% end %>
+      <td class="fw-bold" style="color: red;"> &times;</td>
+      <td class="fw-bold" style="color: blue;"> N/A </td>
+      <td class="fw-bold" style="color: blue;"> N/A</td>
+  <% else %>
+      <td class="fw-bold" style="color: red;"> &times; </td>
+      <td class="fw-bold" style="color: blue;"> N/A </td>
+      <td class="fw-bold" style="color: blue;"> N/A</td>
+      <td class="fw-bold" style="color: greem;">&#x2713;  </td>
+      <td> <%= user.address  %></td>
+      <% if user.has_dnacpr == true %>
+        <td class="fw-bold" style="color: green;">&#x2713; </td>
+      <% else %>
+        <td class="fw-bold" style="color: red;"> &times; </td>
+      <% end %>
   <% end %>
+    </tr>
+    
+  </tbody>
+</table>
 
-<% if user.is_a?(Resident) %>
-  <p>
-    <strong>Address:</strong>
-    <%= user.address %>
-  </p>
 
-  <p>
-    <strong>Has dnacpr:</strong>
-    <%= user.has_dnacpr %>
-  </p>
-  <% end %>
-
-</div>
